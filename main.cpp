@@ -339,13 +339,16 @@ extern "C" void* ThreadStats(void*) {
   } while(1);
 }
 
-static const string mainnet_seeds[] = {"dnsseed.bluematt.me", "bitseed.xf2.org", "dnsseed.bitcoin.dashjr.org", "seed.bitcoin.sipa.be", ""};
-static const string testnet_seeds[] = {"testnet-seed.bitcoin.petertodd.org", "static-testnet-seed.bitcoin.petertodd.org", ""};
+// NAMECOIN
+static const string mainnet_seeds[] = {""}; //"dnsseed.bluematt.me", "bitseed.xf2.org", "dnsseed.bitcoin.dashjr.org", "seed.bitcoin.sipa.be", ""};
+static const string testnet_seeds[] = {""}; //"testnet-seed.bitcoin.petertodd.org", "static-testnet-seed.bitcoin.petertodd.org", ""};
 static const string *seeds = mainnet_seeds;
 
 extern "C" void* ThreadSeeder(void*) {
   if (!fTestNet){
-    db.Add(CService("kjy2eqzk4zwi5zd3.onion", 8333), true);
+    // NAMECOIN
+    //db.Add(CService("kjy2eqzk4zwi5zd3.onion", 8333), true);
+    db.Add(CService("127.0.0.1", 8334), true);
   }
   do {
     for (int i=0; seeds[i] != ""; i++) {
